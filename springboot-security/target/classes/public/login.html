@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <script src="https://cdn.staticfile.org/jquery/1.12.3/jquery.min.js"></script>
+</head>
+<body>
+<h1>自由的系统</h1>
+<form action="/login" method="post">
+    <span>用户名称</span><input type="text" name="username" id = "username" /> <br>
+    <span>用户密码</span><input type="password" name="password" id="password"/> <br>
+    <input type="button"  onclick="login()" value="登陆">
+</form>
+   <p><a href="/logout">退出</a></p>
+</body>
+
+<script type="text/javascript">
+    function login() {
+        var username = $("#username").val();
+        var password = $("#password").val();
+        if(username == " " || password == " "){
+            alert("用户名和密码不能为空");
+            return;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "/login",
+            data: {
+                "username":username,
+                "password":password
+            },
+            success: function (json) {
+                if(json.isok){
+                    location.href = '/';  // index.html
+                }else{
+                    alert(json.message);
+                    location.href = '/login.html';
+                }
+            },
+            error:  function (e) {
+                alert("数据请求失败")
+            }
+            }
+        );
+    }
+</script>
+</html>
