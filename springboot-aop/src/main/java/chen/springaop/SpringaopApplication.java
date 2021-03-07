@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-@SpringBootApplication(scanBasePackages = {"chen.springaop.aop"})
+@SpringBootApplication(scanBasePackages = {"chen.springaop"})
 public class SpringaopApplication {
 
     // 定义切面
